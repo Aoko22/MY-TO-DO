@@ -131,3 +131,16 @@ setInterval(updateDateTime, 1000);
 
 // INITIAL TASK COUNT
 updateProgress();
+// LOAD TASKS FROM LOCAL STORAGE
+function loadTasks() {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    savedTasks.forEach(function(task) {
+        createTask(task.text, task.completed);
+    });
+
+    updateProgress();
+}
+
+// LOAD SAVED TASKS WHEN THE PAGE OPENS
+loadTasks();
